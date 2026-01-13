@@ -24,6 +24,7 @@ keywords = ["osf", "downloader", "research"]
 dev = [
     "ruff",
     "black",
+    "pytest",
 ]
 
 [project.urls]

@@ -15,3 +15,7 @@ jobs:
       - run: pip install -e .[dev]
       - run: ruff check .
       - run: black --check .
+      - run: pytest tests/
+      - name: Clean up test outputs
+        if: always()
+        run: rm -rf test_output
