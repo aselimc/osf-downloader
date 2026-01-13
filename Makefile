@@ -5,3 +5,9 @@ build:
 
 publish: build
 	twine upload dist/*
+
+clean:
+	rm -rf dist build *.egg-info
+	rm -rf __pycache__
+	rm -rf .ruff_cache
+	rm -rf .pytest_cache
