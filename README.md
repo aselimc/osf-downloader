@@ -19,7 +19,7 @@ cd osf-downloader
 pip install -e .
 ```
 
-### Option B: Python package (if published)
+### Option B: Python package
 
 ```bash
 pip install osf-downloader
@@ -45,8 +45,6 @@ Download a single file by path inside OSF storage:
 osf-download download <OSF_ID> ./data/myfile.csv path/inside/osf/myfile.csv
 ```
 
-Notes:
-
 - Command shape: `osf-download download PROJECT_ID SAVE_PATH [FILE_PATH]`.
 - `file_path` is the path inside **osfstorage** (case-sensitive; use `/` separators).
 - `save_path` is treated as an *output file path* if it already has a suffix/extension.
@@ -54,48 +52,6 @@ Notes:
     - project download → `.zip`
     - file download → uses the extension from `file_path` (e.g. `.csv`)
 
-
-## Examples
-
-Download an OSF project ZIP to `./datasets/osf.zip`:
-
-```bash
-osf-download download abcd1 ./datasets/osf.zip
-```
-
-Download an OSF project ZIP where the `.zip` extension is chosen automatically:
-
-```bash
-osf-download download abcd1 ./datasets/osf
-```
-
-Download a single file into `./datasets/`:
-
-```bash
-osf-download download abcd1 ./datasets results/data.csv
-```
-
-Tip: to avoid ambiguity, prefer providing a full output filename (e.g. `./datasets/results.csv`).
-
-
-## Troubleshooting
-
-- **404 / not found**: verify the OSF id and that the project/component is public.
-- **401 / unauthorized**: this tool currently does not handle OSF authentication; use public resources.
-- **Path not found**: if downloading a single file, ensure `file_path` matches the OSF storage path (case-sensitive).
-
-## Caveats
-
-- Project downloads create a ZIP by fetching all files; for very large projects this may take time and memory.
-- Only the `osfstorage` provider is supported.
-
-## Contributing
-
-Issues and pull requests are welcome. Include:
-
-- A clear description of the OSF resource and expected behavior
-- Minimal reproduction steps
-- Logs/trace output if available
 
 ## License
 
