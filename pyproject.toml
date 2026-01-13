@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "osf-downloader"
+version = "0.1.3"
+description = "Download files from osf.io"
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "requests",
+    "typer[all]",
+    "tqdm",
+    "rich",
+]
+
+authors = [{ name = "Ahmet Selim Canakci" }]
+license = { text = "MIT" }
+keywords = ["osf", "downloader", "research"]
+
+[project.urls]
+Homepage = "https://github.com/aselimc/osf-downloader"
+
+[project.scripts]
+osf-download = "osf_downloader.cli:main"
