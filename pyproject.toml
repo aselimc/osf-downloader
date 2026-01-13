@@ -20,6 +20,12 @@ authors = [{ name = "Ahmet Selim Canakci" }]
 license = { text = "MIT" }
 keywords = ["osf", "downloader", "research"]
 
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "black",
+]
+
 [project.urls]
 Homepage = "https://github.com/aselimc/osf-downloader"
 
