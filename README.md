@@ -15,7 +15,8 @@ Download files (or a ZIP of an entire project) from the **Open Science Framework
 ```bash
 git clone https://github.com/aselimc/osf-downloader.git
 cd osf-downloader
-# install using your project’s preferred tool (pip/poetry/pipx/etc.)
+# editable install
+pip install -e .
 ```
 
 ### Option B: Python package (if published)
@@ -23,6 +24,10 @@ cd osf-downloader
 ```bash
 pip install osf-downloader
 ```
+
+Requirements:
+
+- Python 3.9+
 
 ## Usage
 
@@ -42,10 +47,12 @@ osf-download download <OSF_ID> ./data/myfile.csv path/inside/osf/myfile.csv
 
 Notes:
 
-- `save_path` can be a directory or a filename.
-- If `save_path` is a directory, the tool will choose a filename automatically:
-    - project download → `*.zip`
-    - file download → uses the file extension from `file_path`
+- Command shape: `osf-download download PROJECT_ID SAVE_PATH [FILE_PATH]`.
+- `file_path` is the path inside **osfstorage** (case-sensitive; use `/` separators).
+- `save_path` is treated as an *output file path* if it already has a suffix/extension.
+- If `save_path` has **no** suffix/extension, the tool appends one automatically:
+    - project download → `.zip`
+    - file download → uses the extension from `file_path` (e.g. `.csv`)
 
 
 ## Examples
@@ -56,10 +63,10 @@ Download an OSF project ZIP to `./datasets/osf.zip`:
 osf-download download abcd1 ./datasets/osf.zip
 ```
 
-Download an OSF project ZIP into the current directory (filename is chosen automatically):
+Download an OSF project ZIP where the `.zip` extension is chosen automatically:
 
 ```bash
-osf-download download abcd1 .
+osf-download download abcd1 ./datasets/osf
 ```
 
 Download a single file into `./datasets/`:
@@ -68,12 +75,19 @@ Download a single file into `./datasets/`:
 osf-download download abcd1 ./datasets results/data.csv
 ```
 
+Tip: to avoid ambiguity, prefer providing a full output filename (e.g. `./datasets/results.csv`).
+
 
 ## Troubleshooting
 
 - **404 / not found**: verify the OSF id and that the project/component is public.
 - **401 / unauthorized**: this tool currently does not handle OSF authentication; use public resources.
 - **Path not found**: if downloading a single file, ensure `file_path` matches the OSF storage path (case-sensitive).
+
+## Caveats
+
+- Project downloads create a ZIP by fetching all files; for very large projects this may take time and memory.
+- Only the `osfstorage` provider is supported.
 
 ## Contributing
 
