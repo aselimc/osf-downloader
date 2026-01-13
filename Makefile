@@ -8,6 +8,7 @@ publish: build
 
 clean:
 	rm -rf dist build *.egg-info
-	rm -rf __pycache__
+	rm -rf **/*/__pycache__
 	rm -rf .ruff_cache
 	rm -rf .pytest_cache
+	rm -rf **/*.egg-info
